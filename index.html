@@ -1,84 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirecionando...</title>
+  <meta charset="UTF-8">
+  <title>Aguarde...</title>
 
-<!-- Pixel do Facebook -->
-<script>
-!function(f,b,e,v,n,t,s){
-if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window,document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1172517568041839');
-fbq('track','PageView');
-</script>
-<noscript>
-<img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1172517568041839&ev=PageView&noscript=1"/>
-</noscript>
-</head>
-<body style="margin:0;background:#fff">
-<script>
-// CONFIGURAÇÃO
-const API='https://web-production-29ac.up.railway.app';
-const BOT='Analeetticia_bot';
-const FIXED_START='w43407834';
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
 
-(function() {
-    const params = new URLSearchParams(location.search);
-    const trackingData = {
-        fbclid: params.get('fbclid'),
-        utm_source: params.get('utm_source'),
-        utm_campaign: params.get('utm_campaign'),
-        utm_medium: params.get('utm_medium'),
-        utm_content: params.get('utm_content'),
-        utm_term: params.get('utm_term'),
-        src: params.get('src'),
-        sck: params.get('sck')
-    };
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
 
-    const hasTracking = trackingData.fbclid || trackingData.utm_source || trackingData.utm_campaign;
+    fbq('init', '2074068463378069');
+    fbq('track', 'PageView');
+  </script>
 
-    if(hasTracking) {
-        fetch(${API}/api/save-tracking, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(trackingData)
-        })
-        .then(r => r.json())
-        .then(data => {
-            if(data.short_id) {
-                window.location.replace(https://t.me/${BOT}?start=${data.short_id});
-            } else {
-                window.location.replace(https://t.me/${BOT}?start=${FIXED_START});
-            }
-        })
-        .catch(() => {
-            // fallback fbclid
-            if(trackingData.fbclid && trackingData.fbclid.length > 60) {
-                fetch(${API}/api/save-fbclid, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({fbclid: trackingData.fbclid})
-                })
-                .then(r => r.json())
-                .then(d => window.location.replace(https://t.me/${BOT}?start=fb_${d.short_id}))
-                .catch(() => window.location.replace(https://t.me/${BOT}?start=${FIXED_START}));
-            } else {
-                window.location.replace(https://t.me/${BOT}?start=${FIXED_START});
-            }
-        });
-    } else {
-        // sem tracking
-        window.location.replace(https://t.me/${BOT}?start=${FIXED_START});
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      font-family: Arial, sans-serif;
+      color: #aaa;
+      font-size: 14px;
     }
-})();
+  </style>
+</head>
+<body>
+
+<div>Carregando…</div>
+
+<script>
+  const telegramUrl = "https://t.me/+i9wBznEPyrdjOTgx";
+
+  const bots = [
+    "facebook",
+    "meta",
+    "bot",
+    "crawler",
+    "spider",
+    "preview",
+    "whatsapp",
+    "telegrambot",
+    "google",
+    "bing"
+  ];
+
+  const ua = navigator.userAgent.toLowerCase();
+
+  const isBot = bots.some(bot => ua.includes(bot));
+
+  if (!isBot) {
+    setTimeout(() => {
+      window.location.href = telegramUrl;
+    }, 1500);
+  }
 </script>
+
 </body>
 </html>
